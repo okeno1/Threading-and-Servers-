@@ -43,8 +43,19 @@ if __name__ == "__main__":
     start = time.perf_counter()
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
+        '''
         f1 = executor.submit(do_something, 1)
+        f2 = executor.submit(do_something, 1)
+        
         print(f1.result())
+        print(f2.result())
+        '''
+        
+        results = [executor.submit(do_something,1) for _ in range(10)]
+        
+        for f in concurrent.futures.as_completed(results):
+            print(f.result())
+        
 
     # Uncomment the block below to use multiprocessing manually
     '''
