@@ -16,8 +16,9 @@ t2 = threading.Thread(target=do_something)
 t1.start()
 t2.start()
 
-
+t1.join()
+t2.join()
 
 finish = time.perf_counter()
 
-print (f'Finished in {round(finish-start,2)} second(s)')
+print(f'Finished in {round(finish-start,2)} second(s)')
